@@ -9,6 +9,11 @@ class Vegies extends Component {
     super(props);
   }
 
+  // pass func name with id as props to parent
+  removeProduct(id) {    
+    this.props.onDelete(id)
+  }
+
 // Render Vegies Items
   _renderItems() {
     return Object.entries(this.props.vegiesItems).map(([key, value]) => {
@@ -20,7 +25,7 @@ class Vegies extends Component {
             <li>Product: {value.product}</li>
             <li>Price: {value.priceperKg}/Kg</li>
             <li>MafDate: {value.mafedDate}</li>
-            <button>X</button>
+            <button onClick={() => this.removeProduct(value.id)}>X</button>
           </ul>
         </div>
       )

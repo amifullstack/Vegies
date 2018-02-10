@@ -45,7 +45,22 @@ class VegiesItems extends Component {
 
   }
 
-  render() {   
+  handleDeleteProduct(id) {
+    // get current state
+    let vegiesItems = this.state.vegiesItems;
+
+    // match current state id and received is
+    let index = vegiesItems.findIndex(x => x.id == id)
+
+    // Remove
+    vegiesItems.splice(index, 1)
+
+    // set/reset state
+    this.setState({ vegiesItems: vegiesItems})
+
+  }
+
+  render() {
     
     return(
       <div className="vegiesitems">
@@ -54,7 +69,7 @@ class VegiesItems extends Component {
         <AddVegiesItems addProduct={(product) => this.handleAddProduct(product)}/>
 
         {/* send state */}
-        <Vegies vegiesItems={this.state.vegiesItems} />     
+        <Vegies vegiesItems={this.state.vegiesItems} onDelete={(id) => this.handleDeleteProduct(id)} />
         
       </div>
     )
