@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import pid from 'uuid';
 
 import Vegies from '../Vegies/Vegies';
+import AddVegiesItems from '../AddVegiesItems/AddVegiesItems';
 
 
 class VegiesItems extends Component {
@@ -32,11 +33,27 @@ class VegiesItems extends Component {
     })
   }
 
+  handleAddProduct(product) {
+    // get current state
+    let vegiesItems = this.state.vegiesItems;
+
+    // Push new state to current
+    vegiesItems.push(product);
+
+    // Not done yet stateState
+    this.setState( { vegiesItems: vegiesItems})
+
+  }
+
   render() {   
     
     return(
       <div className="vegiesitems">
         <h3>Items</h3>
+        {/* AddVegiesItems From */}
+        <AddVegiesItems addProduct={(product) => this.handleAddProduct(product)}/>
+
+        {/* send state */}
         <Vegies vegiesItems={this.state.vegiesItems} />     
         
       </div>
